@@ -104,12 +104,12 @@ public class MainActivity extends AppCompatActivity {
         OwnerET=(EditText)popupView.findViewById(R.id.Owner);
         repositorynameET=(EditText)popupView.findViewById(R.id.Reponame);
         okbtn=(Button)popupView.findViewById(R.id.ok_btn);
-        editor.putString("Ownername",String.valueOf(OwnerET.getText()));
-        editor.apply();
         okbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pgbar.setVisibility(View.VISIBLE);
+                editor.putString("Ownername",String.valueOf(OwnerET.getText()));
+                editor.apply();
                 loaddata(String.valueOf(OwnerET.getText()),String.valueOf(repositorynameET.getText()));
                 pgbar.setVisibility(View.GONE);
             }

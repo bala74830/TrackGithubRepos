@@ -20,7 +20,10 @@ import java.util.List;
 public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ReposViewHolder>  {
 
     private List<GitHubRepo> repos;
-    private Context context;
+    public Context context;
+    SharedPreferences settings;
+    SharedPreferences.Editor editor;
+    String oname="";
 
     public ReposAdapter(List<GitHubRepo> repos, Context context) {
         this.setRepos(repos);
@@ -40,8 +43,8 @@ public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ReposViewHol
         TextView repoDescription,Ownername;
         ImageView sharebtn;
         LinearLayout repoll;
-        SharedPreferences settings;
-        SharedPreferences.Editor editor;
+//        SharedPreferences settings;
+//        SharedPreferences.Editor editor;
         public ReposViewHolder(View v) {
             super(v);
             repoName = (TextView) v.findViewById(R.id.repoName);
@@ -49,14 +52,13 @@ public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ReposViewHol
             sharebtn = (ImageView) v.findViewById(R.id.sharbtn);
             repoll =(LinearLayout) v.findViewById(R.id.repoll);
             Ownername =(TextView) v.findViewById(R.id.OwName);
-            settings = v.getContext().getSharedPreferences("MySharedPref", MODE_PRIVATE);
-            editor = settings.edit();
+//            settings = v.getContext().getSharedPreferences("MySharedPref", MODE_PRIVATE);
+//            editor = settings.edit();
         }
     }
 
     @Override
-    public ReposViewHolder onCreateViewHolder(ViewGroup parent,
-                                                           int viewType) {
+    public ReposViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_repo, parent, false);
         return new ReposViewHolder(view);
     }
@@ -71,7 +73,12 @@ public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ReposViewHol
         else {
          holder.repoDescription.setText("No Description found");
         }
-        holder.Ownername.setText(holder.settings.getString("Ownername",""));
+        settings = holder.itemView.getContext().getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        editor = settings.edit();
+        //oname= settings.getString("Ownername","");
+        holder.Ownername.setText(settings.getString("Ownername",""));
+//        String oname=holder.settings.getString("Ownername","");
+        oname=holder.Ownername.getText().toString();
         holder.sharebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +87,7 @@ public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ReposViewHol
                     shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     shareIntent.setType("text/plain");
                     String shareMessage= "\nCheck this Repo\n\n";
-                    shareMessage = shareMessage + "https://github.com/"+holder.Ownername.getText()+"/"+repos.get(position).getName() +"\n\n";
+                    shareMessage = shareMessage + "https://github.com/"+ oname+"/"+repos.get(position).getName() +"\n\n";
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
                     Intent chooserIntent = Intent.createChooser(shareIntent, "Open With");
                     chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -95,7 +102,7 @@ public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ReposViewHol
             public void onClick(View view) {
 //                https://github.com/bala74830/GuesstheWord
 
-                Uri uri = Uri.parse("https://github.com/"+holder.Ownername.getText()+"/"+repos.get(position).getName());
+                Uri uri = Uri.parse("https://github.com/"+oname+"/"+repos.get(position).getName());
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
