@@ -30,7 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="ADD"
+        android:textColor="@color/black"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#000000"/>
+        android:backgroundTint="#FFFFFF"/>
 </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primarydark"
     tools:context=".MainActivity">
 
     <ProgressBar
@@ -35,7 +36,7 @@
         android:textAlignment="center"
         android:textSize="25sp"
         android:textColor="@color/white"
-        android:background="#000000"
+        android:background="@color/primarydark"
         android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -53,8 +54,21 @@
         android:gravity="center"
         android:text="Track your Repository by Clicking on the Add Button"
         android:textStyle="italic"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:visibility="gone"
         android:textSize="20sp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_fab2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#A3EAA6"
+        android:src="@drawable/user"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

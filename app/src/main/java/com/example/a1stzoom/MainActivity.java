@@ -4,12 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -26,7 +26,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,7 +35,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    FloatingActionButton addrepo;
+    FloatingActionButton addrepo,userrepo;
     ProgressBar pgbar;
     RecyclerView repositoriesrv;
     TextView norepos;
@@ -56,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         settings = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         editor = settings.edit();
         addrepo=findViewById(R.id.add_fab);
+        userrepo=findViewById(R.id.add_fab2);
         pgbar=findViewById(R.id.progressbar);
         repositoriesrv=findViewById(R.id.repos_rv);
         norepos=findViewById(R.id.no_repos_text);
@@ -87,6 +87,13 @@ public class MainActivity extends AppCompatActivity {
         repositoriesrv.setLayoutManager(new LinearLayoutManager(this));
         reposAdapter = new ReposAdapter(reposlist, getApplicationContext());
         repositoriesrv.setAdapter(reposAdapter);
+        userrepo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i =new Intent(getApplicationContext(), MainActivity2.class);
+                startActivity(i);
+            }
+        });
     }
     public void onButtonShowPopupWindowClick(View view) {
         LayoutInflater inflater = (LayoutInflater)
