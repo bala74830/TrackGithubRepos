@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "452106047348",
+    "project_id": "trackgithubrepos",
+    "storage_bucket": "trackgithubrepos.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452106047348:android:a163c8444f9b710ce7e621",
+        "android_client_info": {
+          "package_name": "com.example.a1stzoom"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASGoU6n3QO0VaEaS8bcNXl3BL48Buv7do"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
